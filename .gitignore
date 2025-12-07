@@ -3,3 +3,6 @@ minimal-go/minimal
 minimal-java/*.class
 minimal-java/jre.tar.gz
 minimal-java/jdk-*/
+
+.project
+.settings/

@@ -1,0 +1,19 @@
+on: [push, pull_request]
+
+jobs:
+
+  ci-build:
+    runs-on: docker
+    container:
+      image: alpine    
+    steps:
+      - run: "cat /etc/os-release" # Alpine Linux v3.23"
+      - run: apk add --no-cache nodejs
+      - run: node --version # v24.11.1
+      - uses: actions/checkout@v4
+      - run: apk add --no-cache docker-cli
+      - run: docker --version # Docker version 29.1.2
+      - run: docker build -t minimal minimal/
+      - run: docker login -u philip -p "${{ secrets.DOCKER_TOKEN }}" "${{ vars.DOCKER_REGISTRY }}"
+      - run: docker tag minimal "${{ vars.DOCKER_REGISTRY }}/${{ forgejo.repository }}-minimal"
+      - run: docker push "${{ vars.DOCKER_REGISTRY }}/${{ forgejo.repository }}-minimal"
