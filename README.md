@@ -1,6 +1,6 @@
 # docker-distroless
 
-Experiments with minimalistic Docker images
+Experiments with minimalistic/distroless Docker images
 
 ## Build and run image (C)
 
