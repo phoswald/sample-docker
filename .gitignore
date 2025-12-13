@@ -6,3 +6,5 @@ minimal-java/jdk-*/
 
 .project
 .settings/
+
+.vscode/

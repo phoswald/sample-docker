@@ -1,8 +1,9 @@
-# docker-distroless
+
+# sample-docker
 
 Experiments with minimalistic/distroless Docker images
 
-## Build and run image
+## Build images
 
 ~~~
 $ make clean
