@@ -5,15 +5,10 @@ jobs:
   ci-build:
     runs-on: docker
     container:
-      image: alpine    
+      image: alpine:3.23
     steps:
-      - run: "cat /etc/os-release" # Alpine Linux v3.23"
-      - run: apk add --no-cache nodejs
-      - run: node --version # v24.11.1
+      - run: apk add --no-cache nodejs docker-cli make
       - uses: actions/checkout@v4
-      - run: apk add --no-cache docker-cli
-      - run: docker --version # Docker version 29.1.2
-      - run: docker build -t minimal minimal/
-      - run: docker login -u "${{ vars.DOCKER_USER }}" -p "${{ secrets.DOCKER_TOKEN }}" "${{ vars.DOCKER_REGISTRY }}"
-      - run: docker tag minimal "${{ vars.DOCKER_REGISTRY }}/${{ forgejo.repository }}-minimal"
-      - run: docker push "${{ vars.DOCKER_REGISTRY }}/${{ forgejo.repository }}-minimal"
+      - run: make clean
+      - run: make all
+      - run: make push DOCKER_REGISTRY="${{ vars.DOCKER_REGISTRY }}" DOCKER_USER="${{ vars.DOCKER_USER }}" DOCKER_TOKEN="${{ secrets.DOCKER_TOKEN }}"
