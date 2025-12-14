@@ -13,5 +13,5 @@ $ make all
 ## Inspect built image
 
 ~~~
-$ docker save -o minimal.tar minimal:latest
+$ docker save -o minimal.tar philip/minimal:latest
 ~~~
