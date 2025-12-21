@@ -17,7 +17,7 @@ test-minimal:
 	docker run --rm philip/minimal:$(TAG)
 
 test-minimal-java:
-	docker run -it --rm -e APP_ENV2=FromMakefile philip/minimal-java:$(TAG) ArgFromMakefile
+	docker run --rm -e APP_ENV2=FromMakefile philip/minimal-java:$(TAG) ArgFromMakefile
 
 push:
 	docker login "$(DOCKER_REGISTRY)" -u "$(DOCKER_USER)" -p "$(DOCKER_TOKEN)"
@@ -30,4 +30,3 @@ push:
 clean:
 	docker rmi -f philip/minimal:$(TAG)      2> /dev/null || true
 	docker rmi -f philip/minimal-java:$(TAG) 2> /dev/null || true
-
