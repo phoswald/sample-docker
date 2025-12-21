@@ -8,7 +8,7 @@ build-minimal:
 	docker build -t philip/minimal:$(TAG) minimal/
 
 build-minimal-java:
-	docker build --progress=plain -t philip/minimal-java:$(TAG) minimal-java/
+	docker build -t philip/minimal-java:$(TAG) minimal-java/
 
 test: test-minimal test-minimal-java
 
